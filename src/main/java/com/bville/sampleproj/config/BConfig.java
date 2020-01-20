@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Bart
  */
 @Configuration
-@ComponentScan(basePackages = {"com.bville.bachussweb"})
+@ComponentScan(basePackages = {"com.bville.sampleproj"})
 public class BConfig {
     
 }
