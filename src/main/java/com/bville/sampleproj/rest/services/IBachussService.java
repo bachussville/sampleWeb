@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bville.sampleproj.config.rest.services;
+package com.bville.sampleproj.rest.services;
+
+import com.bville.sampleproj.repository.Flora;
 
 /**
  *
  * @author Bart
  */
 
-public interface IBodyService {
+public interface IBachussService {
 
-    public long getLength(Boolean type);
+    public Flora getFlora(String id);
 }
