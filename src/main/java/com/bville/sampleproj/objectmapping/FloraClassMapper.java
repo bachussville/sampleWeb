@@ -8,11 +8,13 @@ package com.bville.sampleproj.objectmapping;
 import com.bville.sampleproj.persistence.FloraDto;
 import com.bville.sampleproj.services.Flora;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Bart
  */
+@Component
 public class FloraClassMapper extends BasicOrikaMapper<Flora, FloraDto>{
 
     public FloraClassMapper() {

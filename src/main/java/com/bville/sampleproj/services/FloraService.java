@@ -5,6 +5,7 @@
  */
 package com.bville.sampleproj.services;
 
+import com.bville.sampleproj.persistence.FloraDto;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,16 +16,16 @@ import org.springframework.stereotype.Service;
 public class FloraService implements IFloraService {
 
     @Override
-    public Flora getFlora(String id) {
-        Flora f = new Flora();
-        f.setName("SomeFlora-" + id);
+    public FloraDto getFlora(String id) {
+        FloraDto f = new FloraDto();
+        f.setDefaultName("SomeFlora-" + id);
         return f;
     }
 
     @Override
-    public Flora save(Flora toSave) {
+    public FloraDto save(FloraDto toSave) {
 
-        Flora f = toSave;
+        FloraDto f = toSave;
         return f;
     }
 

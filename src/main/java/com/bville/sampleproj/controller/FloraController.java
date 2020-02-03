@@ -6,6 +6,8 @@
 package com.bville.sampleproj.controller;
 
 import com.bville.sampleproj.objectmapping.BasicJsonMapper;
+import com.bville.sampleproj.objectmapping.FloraClassMapper;
+import com.bville.sampleproj.persistence.FloraDto;
 import com.bville.sampleproj.services.Flora;
 import com.bville.sampleproj.services.IFloraService;
 import java.util.logging.Logger;
@@ -25,28 +27,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 //@EnableAutoConfiguration
 public class FloraController {
+
     @Autowired
     BasicJsonMapper mapper;
+    @Autowired
+    FloraClassMapper floraClassMapper;
 
     static Logger log = Logger.getLogger(FloraController.class.getName());
-    
+
     @Autowired
     IFloraService floraService;
 
     public FloraController() {
     }
 
-    @RequestMapping("/flora/{floraId}" )
+    @RequestMapping("/flora/{floraId}")
     public String getFloraById(@PathVariable(value = "floraId") String id) throws JsonProcessingException {
         log.log(Level.INFO, "getFloraById() REQUEST with ID={0}", id);
-        return mapper.writeValueAsString(floraService.getFlora(id));
+        FloraDto floraDto = floraService.getFlora(id);
+        return mapper.writeValueAsString(floraClassMapper.mapToSourceClass(floraDto));
     }
-    
-    
+
     @PutMapping(path = "/flora")
     public String saveFlora(@RequestBody Flora f) throws JsonProcessingException {
         log.log(Level.INFO, "saveFlora() - {0}", mapper.writeValueAsString(f));
-        return mapper.writeValueAsString(floraService.save(f));
+        FloraDto floraDto = floraService.save(floraClassMapper.mapToTargetClass(f));
+        return mapper.writeValueAsString(floraClassMapper.mapToSourceClass(floraDto));
     }
-    
+
 }

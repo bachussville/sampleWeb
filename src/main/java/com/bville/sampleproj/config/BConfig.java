@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Bart
  */
 @Configuration
-@ComponentScan(basePackages = {"com.bville.sampleproj"})
+@ComponentScan(basePackages = {"com.bville.sampleproj","ma.glasnost.orika"})
 public class BConfig {
     
 }

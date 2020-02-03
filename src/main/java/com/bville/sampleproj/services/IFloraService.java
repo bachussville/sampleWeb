@@ -5,11 +5,13 @@
  */
 package com.bville.sampleproj.services;
 
+import com.bville.sampleproj.persistence.FloraDto;
+
 /**
  *
  * @author Bart
  */
 public interface IFloraService {
-    public Flora getFlora(String id);
-    public Flora save(Flora toSave);
+    public FloraDto getFlora(String id);
+    public FloraDto save(FloraDto toSave);
 }

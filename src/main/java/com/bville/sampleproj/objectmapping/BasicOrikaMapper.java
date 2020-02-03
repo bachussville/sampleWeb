@@ -8,7 +8,6 @@ package com.bville.sampleproj.objectmapping;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
 public abstract class BasicOrikaMapper<S, T> {
 
     private Class sClass, tClass;
-    @Autowired
     MapperFactory mapperFactory;
     boolean registrationRequired = true;
 
