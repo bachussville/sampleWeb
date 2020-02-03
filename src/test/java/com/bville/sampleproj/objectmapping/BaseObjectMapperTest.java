@@ -23,12 +23,12 @@ import org.springframework.boot.test.context.TestComponent;
 @TestComponent
 class BaseObjectMapperTest {
 
-    private static BaseObjectMapper mapper;
+    private static BasicJsonMapper mapper;
     private static TestPojo o;
 
     @BeforeAll
     static void beforeAll() {
-        mapper = new BaseObjectMapper();
+        mapper = new BasicJsonMapper();
         o = TestPojo.getInstance();
     }
 

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bville.sampleproj.rest.services;
+package com.bville.sampleproj.services;
 
-import com.bville.sampleproj.repository.Flora;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,11 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BachussService implements IBachussService{
     
-    public Flora getFlora(String id){
-        Flora f = new Flora();
-        f.setName("SomeFlora-" + id);
-        return f;
-    }
+
             
     
     

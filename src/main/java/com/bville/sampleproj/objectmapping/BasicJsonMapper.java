@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
  * @author Bart
  */
 @Component
-public class BaseObjectMapper extends ObjectMapper{
-    
-    
+public class BasicJsonMapper extends ObjectMapper{
+
 }

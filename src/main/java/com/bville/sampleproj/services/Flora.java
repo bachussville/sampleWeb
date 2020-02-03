@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bville.sampleproj.repository;
+package com.bville.sampleproj.services;
 
 /**
  *
@@ -11,9 +11,18 @@ package com.bville.sampleproj.repository;
  */
 public class Flora {
     
+    private String id;
     private String name;
     private Integer maxHeight;
     private Boolean canStandTheHeat;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -5,12 +5,12 @@
  */
 package com.bville.sampleproj.controller;
 
-import com.bville.sampleproj.objectmapping.BaseObjectMapper;
+import com.bville.sampleproj.objectmapping.BasicJsonMapper;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.bville.sampleproj.rest.services.IBachussService;
+import com.bville.sampleproj.services.IBachussService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.logging.Level;
 import javax.ws.rs.PathParam;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //@EnableAutoConfiguration
 public class BachussRest {
     @Autowired
-    BaseObjectMapper mapper;
+    BasicJsonMapper mapper;
 
     static Logger log = Logger.getLogger(BachussRest.class.getName());
     
@@ -48,9 +48,4 @@ public class BachussRest {
         return "Greetings from Spring Boot 99 !";
     }
 
-    @RequestMapping("/flora/{idZ}" )
-    public String getFloraById(@PathVariable(value = "idZ") String idZ) throws JsonProcessingException {
-        log.log(Level.INFO, "getFloraById() REQUEST with ID={0}", idZ);
-        return mapper.writeValueAsString(bachussBodyService.getFlora(idZ));
-    }
 }

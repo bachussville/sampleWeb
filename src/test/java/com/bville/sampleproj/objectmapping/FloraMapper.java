@@ -5,7 +5,7 @@
  */
 package com.bville.sampleproj.objectmapping;
 
-import com.bville.sampleproj.repository.Flora;
+import com.bville.sampleproj.services.Flora;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
  * @author Bart
  */
 public class FloraMapper {
-    private BaseObjectMapper mapper = new BaseObjectMapper();
-    private final String jsonForFlora = "{\"name\":\"anyName\",\"maxHeight\":74,\"canStandTheHeat\":false}";
+    private BasicJsonMapper mapper = new BasicJsonMapper();
+    private final String jsonForFlora = "{\"id\":null,\"name\":\"anyName\",\"maxHeight\":74,\"canStandTheHeat\":false}";
     
     @Test
     void toJson() throws JsonProcessingException{

@@ -7,17 +7,15 @@ package com.bville.sampleproj.controller;
 
 import com.bville.sampleproj.config.BConfig;
 import com.bville.sampleproj.services.Flora;
-import com.bville.sampleproj.services.BachussService;
 import com.bville.sampleproj.services.FloraService;
 import javax.ws.rs.core.MediaType;
 import static org.hamcrest.CoreMatchers.equalTo;
-import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -36,38 +34,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(BachussRest.class)
 @ContextConfiguration(classes = {BConfig.class})
-public class BachussControllerTest {
+public class FloraControllerTest {
 
     @Autowired
     private MockMvc mvc;
-    
-    @MockBean
-    BachussService bs;
-    
+
     @MockBean
     FloraService floraService;
-    
+
     @Captor
-    ArgumentCaptor<String> arg;
-    
+    ArgumentCaptor<String> stringArgCaptor;
+
     @Captor
-    ArgumentCaptor<Flora> floraArgCaptor;    
-    
+    ArgumentCaptor<Flora> floraArgCaptor;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+    public void getFloraById() throws Exception {
+        Flora aFlora = new Flora();
+        aFlora.setName("abc");
+
+        when(floraService.getFlora(stringArgCaptor.capture())).thenReturn(aFlora);
+
+        mvc.perform(MockMvcRequestBuilders.get("/flora/88").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+                .andExpect(content().string(equalTo("{\"id\":null,\"name\":\"abc\",\"maxHeight\":null,\"canStandTheHeat\":null}")));
+
+        assertEquals("88", stringArgCaptor.getValue());
     }
 
     @Test
-    public void getHello2() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+    public void saveFlora() throws Exception {
+        Flora aFlora = new Flora();
+        aFlora.setName("abc");
+        Flora nextFlora = new Flora();
+        nextFlora.setId("myId");
+
+        when(floraService.save(floraArgCaptor.capture())).thenReturn(nextFlora);
+
+        mvc.perform(MockMvcRequestBuilders.put("/flora")
+                .content("{\"name\":\"abc\"}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Greetings from Spring Boot 99 !")));
+                .andExpect(content().string(equalTo("{\"id\":\"myId\",\"name\":null,\"maxHeight\":null,\"canStandTheHeat\":null}")))
+                ;
+
+        assertNull(floraArgCaptor.getValue().getId());
+
     }
-
-
-
 }
